@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Название студии — разработка игр</title>
+<meta name="description" content="Небольшая студия, которая делает игры на Unity. Смотрите наши проекты и пишите нам.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EEF1F7; --ink:#101528; --muted:#555d75;
+  --cobalt:#3A3FF0; --pink:#FF5C8A; --mint:#8FE3C8;
+  --display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --body:"Onest",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:400 1.0625rem/1.6 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+.wrap{width:min(1080px,100% - 2.5rem);margin-inline:auto}
+
+/* Hero */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;color:#fff;background:linear-gradient(135deg,#14163f,#3A3FF0 60%,#FF5C8A);overflow:hidden}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,12,35,.82),rgba(10,12,35,.35) 60%,rgba(10,12,35,0))}
+.hero>*:not(canvas){position:relative;z-index:1}
+.nav{display:flex;justify-content:space-between;align-items:center;padding-block:1.5rem}
+.logo{font:700 1rem var(--display);text-decoration:none}
+.nav ul{display:flex;gap:1.5rem;list-style:none;padding:0}
+.nav a{text-decoration:none;font-weight:500}
+.nav ul a:hover{text-decoration:underline;text-underline-offset:6px}
+.hero-body{margin-block:auto;padding-block:4rem}
+.hero h1{font:700 clamp(2.4rem,8vw,6rem)/1.02 var(--display);letter-spacing:-.02em;max-width:12ch}
+.hero p{margin-top:1.5rem;font-size:clamp(1.1rem,2.2vw,1.4rem);max-width:30ch}
+.actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2.25rem}
+.btn{display:inline-block;padding:.9rem 1.5rem;border-radius:999px;font-weight:600;text-decoration:none;border:2px solid #fff;transition:background .15s,color .15s}
+.btn.solid{background:#fff;color:var(--ink)}
+.btn.solid:hover{background:var(--mint);border-color:var(--mint)}
+.btn.line:hover{background:#fff;color:var(--ink)}
+
+/* Sections */
+section.block{padding-block:clamp(4rem,10vw,7rem)}
+h2{font:700 clamp(1.6rem,4vw,2.5rem)/1.15 var(--display);letter-spacing:-.01em;margin-bottom:2.5rem}
+
+/* Games */
+.games{list-style:none;padding:0;border-bottom:2px solid var(--ink)}
+.game{display:grid;grid-template-columns:2fr 1.5fr 1fr;gap:1rem 2rem;align-items:baseline;padding:1.5rem .5rem;border-top:2px solid var(--ink);transition:background .15s,padding .15s}
+.game:hover{background:#fff;padding-inline:1.25rem}
+.game h3{font:700 1.25rem/1.2 var(--display)}
+.game span{color:var(--muted)}
+.tag{justify-self:start;padding:.2rem .8rem;border-radius:999px;background:var(--mint);color:var(--ink)!important;font-size:.9rem;font-weight:600}
+.tag.soon{background:var(--pink)}
+.tag.dev{background:var(--cobalt);color:#fff!important}
+
+/* About */
+.about{display:grid;grid-template-columns:1.2fr 1fr;gap:3rem}
+.about p{max-width:52ch}
+.skills{list-style:none;padding:0;display:grid;gap:1.25rem}
+.skills li{padding-left:1.25rem;border-left:4px solid var(--cobalt)}
+.skills li:nth-child(2){border-color:var(--pink)}
+.skills li:nth-child(3){border-color:var(--mint)}
+.skills b{display:block;font-weight:600}
+.skills span{color:var(--muted)}
+
+/* Contact */
+.contact{background:var(--ink);color:#fff}
+.contact h2{margin-bottom:1rem}
+.contact p{max-width:40ch;color:#c8cee0}
+.mail{display:inline-block;margin-top:1.5rem;font:700 clamp(1.3rem,4.5vw,2.75rem)/1.2 var(--display);text-decoration-thickness:3px;text-underline-offset:8px;text-decoration-color:var(--pink)}
+.mail:hover{text-decoration-color:var(--mint)}
+.links{display:flex;flex-wrap:wrap;gap:1.5rem;list-style:none;padding:0;margin-top:2.5rem}
+.links a{font-weight:500;text-underline-offset:5px}
+footer{background:var(--ink);color:#8d95ad;padding-bottom:2rem;font-size:.9rem}
+
+@media (max-width:720px){
+  .nav ul{gap:1rem}
+  .game{grid-template-columns:1fr;gap:.35rem}
+  .about{grid-template-columns:1fr;gap:2.5rem}
+}
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <nav class="nav" aria-label="Основное меню">
+      <!-- ЗАМЕНИТЕ: название студии -->
+      <a class="logo" href="#top">Название студии</a>
+      <ul>
+        <li><a href="#games">Игры</a></li>
+        <li><a href="#about">О нас</a></li>
+        <li><a href="#contact">Контакты</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="wrap hero-body">
+    <h1>Название студии</h1>
+    <p>Делаем игры, в которые хочется возвращаться.</p>
+    <div class="actions">
+      <a class="btn solid" href="#contact">Написать нам</a>
+      <a class="btn line" href="#games">Наши игры</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="block" id="games">
+    <div class="wrap">
+      <h2>Наши игры</h2>
+      <!-- ЗАМЕНИТЕ: названия, жанры, платформы, ссылки -->
+      <ul class="games">
+        <li class="game">
+          <h3>Название игры 1</h3>
+          <span>2D-платформер · ПК</span>
+          <span class="tag">Вышла</span>
+        </li>
+        <li class="game">
+          <h3>Название игры 2</h3>
+          <span>Экшен · ПК, Android</span>
+          <span class="tag dev">В разработке</span>
+        </li>
+        <li class="game">
+          <h3>Название игры 3</h3>
+          <span>Головоломка · мобильные</span>
+          <span class="tag soon">Скоро</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="about" style="padding-top:0">
+    <div class="wrap about">
+      <div>
+        <h2>О студии</h2>
+        <p>Мы небольшая команда разработчиков. Делаем игры на Unity: от первого прототипа до релиза. Любим, когда игра приятно ощущается в руках, а картинка выглядит необычно.</p>
+      </div>
+      <ul class="skills">
+        <li><b>Геймплей и архитектура</b><span>Механики, управление, чистый код на C#</span></li>
+        <li><b>Графика и шейдеры</b><span>Эффекты на HLSL, свет, постобработка</span></li>
+        <li><b>Физика и анимация</b><span>Процедурная анимация, живые персонажи</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block contact" id="contact">
+    <div class="wrap">
+      <h2>Контакты</h2>
+      <p>Хотите обсудить проект, издание или сотрудничество? Напишите нам.</p>
+      <!-- ЗАМЕНИТЕ: почта и ссылки -->
+      <a class="mail" href="mailto:hello@example.com">hello@example.com</a>
+      <ul class="links">
+        <li><a href="https://t.me/your_studio">Telegram</a></li>
+        <li><a href="https://your-studio.itch.io">itch.io</a></li>
+        <li><a href="https://store.steampowered.com/">Steam</a></li>
+        <li><a href="https://youtube.com/">YouTube</a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="year">2026</span> Название студии. Все права защищены.</div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Шейдер в шапке: пиксельный «живой» фон. Если WebGL нет, остаётся градиент.
+(function () {
+  var cv = document.getElementById('fx');
+  var gl = cv.getContext('webgl');
+  if (!gl) return;
+
+  var vs = 'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}';
+  var fs = [
+    'precision mediump float;',
+    'uniform vec2 r;uniform float t;uniform vec2 m;',
+    'float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}',
+    'float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);',
+    ' return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}',
+    'float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*n(p);p*=2.;a*=.5;}return v;}',
+    'void main(){',
+    ' vec2 px=floor(gl_FragCoord.xy/7.)*7.+3.5;',
+    ' vec2 p=(px-.5*r)/r.y;',
+    ' float d=length(p-(m-.5*r)/r.y);',
+    ' p+=.18*vec2(fbm(p*3.+t*.1),fbm(p*3.-t*.1+5.));',
+    ' float q=fbm(p*2.5+vec2(fbm(p*2.+t*.15)))+.35*exp(-d*3.);',
+    ' vec3 c=mix(vec3(.06,.07,.2),vec3(.23,.25,.94),smoothstep(.2,.7,q));',
+    ' c=mix(c,vec3(1.,.36,.54),smoothstep(.6,.85,q));',
+    ' c+=vec3(.56,.89,.78)*smoothstep(.85,1.,q)*.6;',
+    ' c=floor(c*6.+.5)/6.;',
+    ' gl_FragColor=vec4(c,1.);}'
+  ].join('\n');
+
+  function sh(type, src) {
+    var s = gl.createShader(type);
+    gl.shaderSource(s, src); gl.compileShader(s);
+    return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null;
+  }
+  var v = sh(gl.VERTEX_SHADER, vs), f = sh(gl.FRAGMENT_SHADER, fs);
+  if (!v || !f) return;
+  var pr = gl.createProgram();
+  gl.attachShader(pr, v); gl.attachShader(pr, f); gl.linkProgram(pr);
+  if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return;
+  gl.useProgram(pr);
+
+  var buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  var loc = gl.getAttribLocation(pr, 'a');
+  gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+
+  var uR = gl.getUniformLocation(pr, 'r'), uT = gl.getUniformLocation(pr, 't'), uM = gl.getUniformLocation(pr, 'm');
+  var mouse = [0, 0], start = performance.now();
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function resize() {
+    cv.width = cv.clientWidth; cv.height = cv.clientHeight;
+    gl.viewport(0, 0, cv.width, cv.height);
+    if (!mouse[0]) mouse = [cv.width * .7, cv.height * .5];
+  }
+  function draw(now) {
+    gl.uniform2f(uR, cv.width, cv.height);
+    gl.uniform1f(uT, still ? 0 : (now - start) / 1000);
+    gl.uniform2f(uM, mouse[0], mouse[1]);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    if (!still) requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', function () { resize(); if (still) draw(0); });
+  cv.parentElement.addEventListener('pointermove', function (e) {
+    var b = cv.getBoundingClientRect();
+    mouse = [e.clientX - b.left, b.height - (e.clientY - b.top)];
+    if (still) draw(0);
+  });
+  resize();
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
