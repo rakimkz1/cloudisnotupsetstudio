@@ -1,5 +1,5 @@
 :root{
-  --sky:#7CC4FF; --ink:#0B1F4B; --cloud:#fff; --sun:#FFD23F;
+  --sky:#C4D1EE; --ink:#0E0960; --cloud:#fff; --sun:#FFC2D6;
   --display:"Bowlby One","Arial Black",Impact,sans-serif;
   --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
 }
@@ -112,3 +112,24 @@ footer h2{margin-bottom:2rem}
   .keyart{box-shadow:6px 6px 0 var(--ink)}
   .sheet .row{grid-template-columns:1fr}
 }
+
+
+/* Brand assets */
+.logo{display:flex;align-items:center;gap:.65rem}
+.logo img{width:44px;height:44px;border-radius:50%;display:block}
+.keyart.img{aspect-ratio:auto;display:block;background:none}
+.keyart img{height:auto}
+.band .kit-intro{display:grid;justify-content:normal}
+.game h3{display:flex;align-items:center;gap:.9rem}
+.gicon{width:64px;height:64px;border-radius:16px;border:3px solid var(--ink);flex:none}
+.shots{padding-block:clamp(3rem,8vw,5rem)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.75rem;margin-bottom:3.5rem}
+.shots .gallery{margin-bottom:0}
+.gallery img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;display:block;border:4px solid var(--ink);border-radius:16px;box-shadow:6px 6px 0 var(--ink);background:var(--ink)}
+.assets{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;margin-bottom:3.5rem}
+.asset{margin:0;background:var(--sky);border:4px solid var(--ink);border-radius:20px;box-shadow:8px 8px 0 var(--ink);padding:1.25rem}
+.asset img{width:100%;aspect-ratio:4/3;object-fit:contain;display:block;border-radius:12px}
+.asset figcaption{display:flex;justify-content:space-between;gap:1rem;margin-top:1rem;font-weight:700}
+.asset a{text-underline-offset:4px}
+.about-flex{display:flex;flex-wrap:wrap;gap:2.5rem 4rem;align-items:center}
+.about-logo{width:clamp(180px,30vw,280px);height:auto;border-radius:50%;border:4px solid var(--ink);box-shadow:8px 8px 0 var(--ink)}
