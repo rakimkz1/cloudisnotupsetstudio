@@ -1,0 +1,93 @@
+:root{
+  --sky:#7CC4FF; --ink:#0B1F4B; --cloud:#fff; --sun:#FFD23F;
+  --display:"Bowlby One","Arial Black",Impact,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--sky);color:var(--ink);font:400 1.125rem/1.6 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:4px solid var(--ink);outline-offset:3px}
+.wrap{width:min(1100px,100% - 2.5rem);margin-inline:auto}
+
+/* Top bar */
+.top{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-between;align-items:center;padding-block:1.25rem}
+.top ul{display:flex;flex-wrap:wrap;gap:1.25rem;list-style:none;padding:0}
+.top a{font-weight:700;text-decoration:none}
+.top ul a:hover{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px}
+.btn{display:inline-block;padding:.7rem 1.4rem;border:3px solid var(--ink);border-radius:14px;background:var(--sun);font-weight:700;text-decoration:none;box-shadow:5px 5px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+.btn.white{background:var(--cloud)}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;padding-bottom:clamp(3rem,8vw,6rem)}
+.hero h1{position:relative;z-index:1;font:400 clamp(3.4rem,17vw,12.5rem)/.88 var(--display);letter-spacing:-.02em;margin-top:clamp(1rem,4vw,3rem)}
+.hero p{position:relative;z-index:1;margin-top:2rem;max-width:26ch;font-size:clamp(1.2rem,2.4vw,1.6rem);font-weight:600;line-height:1.35}
+.cloud{position:absolute;width:var(--w);height:calc(var(--w)*.32);background:var(--cloud);border-radius:999px;left:-30%;top:var(--y);animation:drift var(--t) linear infinite;animation-delay:var(--d)}
+.cloud::before,.cloud::after{content:"";position:absolute;background:var(--cloud);border-radius:50%}
+.cloud::before{width:42%;height:140%;left:16%;bottom:35%}
+.cloud::after{width:30%;height:100%;left:46%;bottom:45%}
+@keyframes drift{to{transform:translateX(calc(100vw + 70%))}}
+@media (prefers-reduced-motion:reduce){.cloud{animation:none;left:var(--x)}}
+
+/* Games */
+.games{background:var(--sun);border-block:4px solid var(--ink);padding-block:clamp(3rem,8vw,6rem)}
+h2{font:400 clamp(2.4rem,7vw,5rem)/.95 var(--display);margin-bottom:2.5rem}
+.game{display:grid;grid-template-columns:1.4fr 1fr;gap:2.5rem;align-items:center}
+.trailer{position:relative;aspect-ratio:16/9;background:var(--ink);border:4px solid var(--ink);border-radius:20px;box-shadow:10px 10px 0 var(--ink);overflow:hidden;display:grid;place-items:center;color:var(--cloud)}
+.trailer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.play{width:84px;height:84px;border-radius:50%;background:var(--sun);display:grid;place-items:center}
+.play::after{content:"";margin-left:8px;border-left:26px solid var(--ink);border-block:16px solid transparent}
+.trailer small{position:absolute;bottom:1rem;left:1.25rem;font-weight:600}
+.game h3{font:400 clamp(2rem,5vw,3.25rem)/1 var(--display);margin-bottom:1rem}
+.game p{max-width:34ch}
+.game .btns{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.75rem}
+
+/* About */
+.about{padding-block:clamp(3rem,8vw,6rem)}
+.about p{max-width:36ch;font-size:clamp(1.35rem,3vw,2rem);font-weight:600;line-height:1.35}
+
+/* Press kits */
+.press{background:var(--cloud);border-top:4px solid var(--ink);padding-block:clamp(3rem,8vw,6rem)}
+.press-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2.5rem}
+.panel{background:var(--sky);border:4px solid var(--ink);border-radius:20px;box-shadow:8px 8px 0 var(--ink);padding:1.75rem}
+.panel h3{font:400 1.5rem/1.1 var(--display);margin-bottom:1.25rem}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:.6rem 1.25rem}
+.facts dt{font-weight:700}
+.facts dd{margin:0}
+.dl{list-style:none;padding:0;display:grid;gap:.75rem}
+.dl a{display:flex;justify-content:space-between;gap:1rem;padding:.75rem 1rem;background:var(--cloud);border:3px solid var(--ink);border-radius:12px;font-weight:700;text-decoration:none;transition:background .12s}
+.dl a:hover{background:var(--sun)}
+.dl small{font-weight:600;opacity:.7}
+.boiler{grid-column:1/-1}
+.boiler p{max-width:60ch}
+.boiler .btn{margin-top:1.25rem}
+button.btn{font:inherit;font-weight:700;color:inherit;cursor:pointer}
+
+/* Footer */
+footer{background:var(--ink);color:var(--cloud);padding-block:clamp(3rem,8vw,5rem) 2rem}
+footer h2{margin-bottom:2rem}
+.mail{font:400 clamp(1.2rem,4vw,2rem) var(--display);text-decoration-thickness:3px;text-underline-offset:8px;text-decoration-color:var(--sun)}
+.mail:hover{text-decoration-color:var(--sky)}
+.links{display:flex;flex-wrap:wrap;gap:1.5rem;list-style:none;padding:0;margin-top:2rem}
+.links a{font-weight:700;text-underline-offset:5px}
+.fine{margin-top:3.5rem;color:#9db3e0;font-size:.95rem}
+
+@media (max-width:760px){
+  .game{grid-template-columns:1fr}
+  .trailer{box-shadow:6px 6px 0 var(--ink)}
+}
+
+/* Multi-page additions */
+.logo{font:400 1.15rem/1 var(--display);text-decoration:none}
+.top ul a[aria-current]{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px}
+.page-head h1{font:400 clamp(3rem,12vw,8rem)/.9 var(--display);letter-spacing:-.02em;padding-block:clamp(1.5rem,5vw,4rem) clamp(2.5rem,7vw,5rem)}
+.hero .btns{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem}
+.band{background:var(--sun);border-block:4px solid var(--ink);padding-block:clamp(2.5rem,7vw,4.5rem)}
+.band .wrap{display:flex;flex-wrap:wrap;gap:1.5rem 3rem;justify-content:space-between;align-items:center}
+.band h2{margin:0}
+.contact-main{background:var(--sun);border-top:4px solid var(--ink);padding-block:clamp(3rem,8vw,6rem)}
+.contact-main p{max-width:30ch;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:600;line-height:1.35}
+.big-mail{display:inline-block;margin-top:1.5rem;font:400 clamp(1.4rem,5.5vw,3.5rem)/1.15 var(--display);text-decoration-thickness:4px;text-underline-offset:8px;word-break:break-word}
+.about .btn{margin-top:2rem}
+
