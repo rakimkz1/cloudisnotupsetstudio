@@ -1,5 +1,5 @@
 :root{
-  --sky:#C4D1EE; --ink:#0E0960; --cloud:#fff; --sun:#FFC2D6;
+  --sky:#C9DBFF; --ink:#0B1D63; --cloud:#fff; --blue:#2F5BFF; --sun:#8FB2FF;
   --display:"Bowlby One","Arial Black",Impact,sans-serif;
   --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
 }
@@ -133,3 +133,7 @@ footer h2{margin-bottom:2rem}
 .asset a{text-underline-offset:4px}
 .about-flex{display:flex;flex-wrap:wrap;gap:2.5rem 4rem;align-items:center}
 .about-logo{width:clamp(180px,30vw,280px);height:auto;border-radius:50%;border:4px solid var(--ink);box-shadow:8px 8px 0 var(--ink)}
+
+/* Blue buttons */
+.btn{background:var(--blue);color:#fff}
+.btn.white{background:#fff;color:var(--ink)}
